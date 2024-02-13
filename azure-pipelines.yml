@@ -27,6 +27,7 @@ steps:
 - checkout: Dating-app 
 
 - script: |
-    ls $(Build.SourcesDirectory)
+    cd $(Build.SourcesDirectory)
+    ls
   displayName: 'Run a multi-line script'
 
