@@ -27,9 +27,11 @@ steps:
 - checkout: Dating-app 
 
 - script: |
-    cat WSO2_APIM_HELM_Deployment/README.md
-    cat MovieReview/README.md
-    cat MovieReview/README.md
+    if [ "${{ variables['Build.Repository.Name'] }}" != "master_repo" ]; then
+          cat "${{ variables['Build.Repository.Name'] }}/README.md"
+    else
+        echo "Repository is master_repo"
+    fi
 
   displayName: 'Run a multi-line script'
 
