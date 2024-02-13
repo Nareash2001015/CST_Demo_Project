@@ -1,20 +1,3 @@
-# # Starter pipeline
-# # Start with a minimal pipeline that you can customize to build and deploy your code.
-# # Add steps that build, run tests, deploy, and more:
-# # https://aka.ms/yaml
-
-# trigger:
-# - main
-
-# pool:
-#   vmImage: ubuntu-latest
-
-# steps:
-# - script: echo Hello, world!
-#   displayName: 'Run a one-line script'
-
-
-
 resources:
   repositories:
   - repository: WSO2_APIM_HELM_Deployment
@@ -46,17 +29,5 @@ steps:
 - script: dir $(Build.SourcesDirectory)
 
 - script: |
-    git clone https://github.com/Nareash20010150/WSO2_APIM_HELM_Deployment.git
-    cd WSO2_APIM_HELM_Deployment
-    cat README.md
-    cd ..
-
-    git clone https://github.com/Nareash20010150/MovieReview.git
-    cd MovieReview
-    cat README.md
-    cd ..
-
-    git clone https://github.com/Nareash20010150/Dating-app.git
-    cd Dating-app
-    cat README.md
+    ls
   displayName: 'Run a multi-line script'
