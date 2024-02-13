@@ -26,8 +26,7 @@ steps:
 - checkout: MovieReview
 - checkout: Dating-app 
 
-- script: dir $(Build.SourcesDirectory)
-
 - script: |
     ls $(Build.SourcesDirectory)
   displayName: 'Run a multi-line script'
+
