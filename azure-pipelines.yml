@@ -27,6 +27,6 @@ steps:
 - checkout: Dating-app 
 
 - script: |
-    ls
+    cat master_repo/README.md
   displayName: 'Run a multi-line script'
 
