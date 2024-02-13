@@ -13,10 +13,7 @@
 # - script: echo Hello, world!
 #   displayName: 'Run a one-line script'
 
-# - script: |
-#     echo Add other tasks to build, test, and deploy your project.
-#     echo See https://aka.ms/yaml
-#   displayName: 'Run a multi-line script'
+
 
 resources:
   repositories:
@@ -47,3 +44,7 @@ steps:
 - checkout: Dating-app 
 
 - script: dir $(Build.SourcesDirectory)
+
+- script: |
+    cat README.md
+  displayName: 'Run a multi-line script'
