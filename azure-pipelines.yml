@@ -22,12 +22,12 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- checkout: WSO2_APIM_HELM_Deployment
-- checkout: MovieReview
-- checkout: Dating-app 
+- checkout: self
 
 - script: |
-    ${Build.Repository.name}
-
+    if [ "$(Build.Repository.Name)" != "master_repo" ]; then
+          cat "${{ variables['Build.Repository.LocalPath'] }}/README.md"
+    else
+        echo "Repository is master_repo"
+    fi
   displayName: 'Run a multi-line script'
-
