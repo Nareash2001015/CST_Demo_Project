@@ -28,6 +28,5 @@ steps:
 
 - script: |
     cd $(Build.SourcesDirectory)
-    ls
   displayName: 'Run a multi-line script'
 
