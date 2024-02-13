@@ -27,6 +27,6 @@ steps:
 - checkout: Dating-app 
 
 - script: |
-    ls
+    ls master_repo
 
   displayName: 'Run a multi-line script'
