@@ -25,9 +25,11 @@ steps:
 - checkout: WSO2_APIM_HELM_Deployment
 - checkout: MovieReview
 - checkout: Dating-app 
-- checkout: none
 
 - script: |
-    ls
+    env=($(ls --ignore=master_repo))
+    for filename in "${env[@]}"; do
+      cat $filename/README.md
+    done
 
   displayName: 'Run a multi-line script'
