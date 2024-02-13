@@ -25,9 +25,5 @@ steps:
 - checkout: self
 
 - script: |
-    if [ "$(Build.Repository.Name)" != "master_repo" ]; then
-          cat $(Build.Repository.Name)/README.md
-    else
-        echo Repository is master_repo
-    fi
+    ls master_repo
   displayName: 'Run a multi-line script'
