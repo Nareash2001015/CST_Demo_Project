@@ -46,5 +46,5 @@ steps:
 - script: dir $(Build.SourcesDirectory)
 
 - script: |
-    cat README.md
+    cat $(Build.SourcesDirectory)/README.md
   displayName: 'Run a multi-line script'
