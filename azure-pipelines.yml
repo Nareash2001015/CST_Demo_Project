@@ -29,7 +29,7 @@ steps:
 - script: |
     cat WSO2_APIM_HELM_Deployment/README.md
     cat MovieReview/README.md
-    cat MovieReview/Dating-app
+    cat MovieReview/README.md
 
   displayName: 'Run a multi-line script'
 
