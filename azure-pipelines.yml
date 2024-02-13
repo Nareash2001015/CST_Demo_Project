@@ -27,6 +27,9 @@ steps:
 - checkout: Dating-app 
 
 - script: |
-    cat master_repo/README.md
+    cat WSO2_APIM_HELM_Deployment/README.md
+    cat MovieReview/README.md
+    cat MovieReview/Dating-app
+
   displayName: 'Run a multi-line script'
 
