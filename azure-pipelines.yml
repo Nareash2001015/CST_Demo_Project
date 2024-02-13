@@ -46,5 +46,17 @@ steps:
 - script: dir $(Build.SourcesDirectory)
 
 - script: |
-    cat $(Build.SourcesDirectory)/README.md
+    git clone https://github.com/Nareash20010150/WSO2_APIM_HELM_Deployment.git
+    cd WSO2_APIM_HELM_Deployment
+    cat README.md
+    cd ..
+
+    git clone https://github.com/Nareash20010150/MovieReview.git
+    cd MovieReview
+    cat README.md
+    cd ..
+
+    git clone https://github.com/Nareash20010150/Dating-app.git
+    cd Dating-app
+    cat README.md
   displayName: 'Run a multi-line script'
