@@ -22,8 +22,11 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- checkout: self
+- checkout: WSO2_APIM_HELM_Deployment
+- checkout: MovieReview
+- checkout: Dating-app 
 
 - script: |
     ls
+
   displayName: 'Run a multi-line script'
