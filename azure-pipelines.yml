@@ -26,8 +26,8 @@ steps:
 
 - script: |
     if [ "$(Build.Repository.Name)" != "master_repo" ]; then
-          cat "${{ variables['Build.Repository.LocalPath'] }}/README.md"
+          cat $(Build.Repository.Name)/README.md
     else
-        echo "Repository is master_repo"
+        echo Repository is master_repo
     fi
   displayName: 'Run a multi-line script'
