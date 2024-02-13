@@ -1,0 +1,49 @@
+# # Starter pipeline
+# # Start with a minimal pipeline that you can customize to build and deploy your code.
+# # Add steps that build, run tests, deploy, and more:
+# # https://aka.ms/yaml
+
+# trigger:
+# - main
+
+# pool:
+#   vmImage: ubuntu-latest
+
+# steps:
+# - script: echo Hello, world!
+#   displayName: 'Run a one-line script'
+
+# - script: |
+#     echo Add other tasks to build, test, and deploy your project.
+#     echo See https://aka.ms/yaml
+#   displayName: 'Run a multi-line script'
+
+resources:
+  repositories:
+  - repository: WSO2_APIM_HELM_Deployment
+    type: github
+    endpoint: github.com_Nareash20010150
+    name: cs-cst-rnd-001/WSO2_APIM_HELM_Deployment
+
+  - repository: MovieReview
+    type: github
+    endpoint: github.com_Nareash20010150
+    name: cs-cst-rnd-001/MovieReview
+
+  - repository: Dating-app 
+    endpoint: github.com_Nareash20010150
+    type: github
+    name: cs-cst-rnd-001/Dating-app
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- checkout: WSO2_APIM_HELM_Deployment
+- checkout: MovieReview
+- checkout: Dating-app 
+
+- script: dir $(Build.SourcesDirectory)
