@@ -27,7 +27,6 @@ steps:
 - checkout: Dating-app 
 
 - script: |
-    ls Dating-app
-    
+    ls $(Build.Repository.Name)/README.md    
   displayName: 'Run a multi-line script'
 
