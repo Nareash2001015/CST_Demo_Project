@@ -23,17 +23,17 @@ resources:
   - repository: WSO2_APIM_HELM_Deployment
     type: github
     endpoint: github.com_Nareash20010150
-    name: cs-cst-rnd-001/WSO2_APIM_HELM_Deployment
+    name: WSO2_APIM_HELM_Deployment
 
   - repository: MovieReview
     type: github
     endpoint: github.com_Nareash20010150
-    name: cs-cst-rnd-001/MovieReview
+    name: MovieReview
 
   - repository: Dating-app 
     endpoint: github.com_Nareash20010150
     type: github
-    name: cs-cst-rnd-001/Dating-app
+    name: Dating-app
 
 trigger:
 - main
