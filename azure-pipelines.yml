@@ -25,8 +25,9 @@ steps:
 - checkout: WSO2_APIM_HELM_Deployment
 - checkout: MovieReview
 - checkout: Dating-app 
+- checkout: none
 
 - script: |
-    ls master_repo
+    ls
 
   displayName: 'Run a multi-line script'
