@@ -1,5 +1,4 @@
 resources:
-  repositories:
   - template: templates/include-repos.yml
 
 trigger:

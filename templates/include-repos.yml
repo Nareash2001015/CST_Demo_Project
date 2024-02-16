@@ -3,8 +3,9 @@ parameters:
 - repository: MovieReview
 - repository: Dating-app
 
-repositories:
-- repository: ${{repository}}
-  type: github
-  endpoint: github.com_Nareash20010150
-  name: Nareash20010150/${{repository}}
+resources:
+  repositories:
+  - repository: ${{repository}}
+    type: github
+    endpoint: github.com_Nareash20010150
+    name: Nareash20010150/${{repository}}
