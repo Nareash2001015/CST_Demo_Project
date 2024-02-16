@@ -1,21 +1,53 @@
-resources:
-  - template: templates/include-repos.yml
+This is my Azure devops pipeline. In here what is happening is these builds are running one by one, now i want to change this code to run all the jobs parrelly.
 
+
+
+resources:
+  repositories:
+  - repository: WSO2_APIM_HELM_Deployment
+    type: github
+    endpoint: github.com_Nareash20010150
+    name: Nareash20010150/WSO2_APIM_HELM_Deployment
+  - repository: MovieReview
+    type: github
+    endpoint: github.com_Nareash20010150
+    name: Nareash20010150/MovieReview
+  - repository: Dating-app 
+    endpoint: github.com_Nareash20010150
+    type: github
+    name: Nareash20010150/Dating-app
 trigger:
 - main
-
-pool:
-  vmImage: 'ubuntu-latest'
-
-steps:
-- checkout: WSO2_APIM_HELM_Deployment
-- checkout: MovieReview
-- checkout: Dating-app 
-
-- script: |
-    env=($(ls --ignore=master_repo))
-    for filename in "${env[@]}"; do
-      cat $filename/README.md
-    done
-
-  displayName: 'Run a multi-line script'
+stages:
+- stage: CheckoutRepositories
+  displayName: 'Checkout Repositories'
+  jobs:
+  - job: CheckoutWSO2_APIM_HELM_Deployment
+    # pool:
+    #   vmImage: 'ubuntu-latest'
+    displayName: 'Checkout WSO2_APIM_HELM_Deployment'
+    steps:
+    - checkout: WSO2_APIM_HELM_Deployment
+    # - script: |
+    #     env=($(ls --ignore=master_repo))
+    #     for filename in "${env[@]}"; do
+    #       cat $filename/README.md
+    #     done
+    - script: | 
+        cat README.md
+  - job: CheckoutMovieReview
+    # pool:
+    #     vmImage: 'ubuntu-latest'
+    displayName: 'Checkout Movie review'
+    steps:
+    - checkout: MovieReview
+    - script: | 
+        cat README.md
+  - job: CheckoutDatingApp
+    # pool:
+    #     vmImage: 'ubuntu-latest'
+    displayName: 'Checkout Dating app'
+    steps:
+    - checkout: Dating-app
+    - script: | 
+        cat README.md
