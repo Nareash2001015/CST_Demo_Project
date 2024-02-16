@@ -1,19 +1,6 @@
 resources:
   repositories:
-  - repository: WSO2_APIM_HELM_Deployment
-    type: github
-    endpoint: github.com_Nareash20010150
-    name: Nareash20010150/WSO2_APIM_HELM_Deployment
-
-  - repository: MovieReview
-    type: github
-    endpoint: github.com_Nareash20010150
-    name: Nareash20010150/MovieReview
-
-  - repository: Dating-app 
-    endpoint: github.com_Nareash20010150
-    type: github
-    name: Nareash20010150/Dating-app
+  - template: templates/include-repos.yml
 
 trigger:
 - main
