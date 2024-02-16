@@ -1,5 +1,12 @@
+# variables:
+# - template: templates/vars.yml
+
 variables:
-- template: templates/vars.yml
+  - name: repositories
+    value:
+    - WSO2_APIM_HELM_Deployment
+    - MovieReview
+    - Dating-app
 
 resources:
     repositories:
