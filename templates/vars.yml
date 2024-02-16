@@ -1,0 +1,13 @@
+variables:
+  - name: repositories
+    value:
+    - WSO2_APIM_HELM_Deployment
+    - MovieReview
+    - Dating-app
+
+# resources:
+#   repositories:
+#   - repository: ${{repository}}
+#     type: github
+#     endpoint: github.com_Nareash20010150
+#     name: Nareash20010150/${{repository}}
