@@ -15,6 +15,30 @@ resources:
     type: github
     endpoint: github.com_Nareash20010150
     name: Nareash20010150/Dating-app
+
+    parameters:
+      - name: myStringName
+        type: string
+        default: a string value
+      - name: myMultiString
+        type: string
+        default: default
+        values:
+        - default
+        - ubuntu
+      - name: myNumber
+        type: number
+        default: 2
+        values:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+      - name: myBoolean
+        type: boolean
+        default: true
+      
 trigger:
 - main
 stages:
@@ -56,10 +80,14 @@ stages:
           displayName: "Checkout and Print README (${repo.name})"
           pool:
             vmImage: 'ubuntu-latest'
-          steps:
-          - checkout: ${repo.name}
-          - script: |
-              echo "Checking out repository: ${repo.name}"
-              echo "Printing README file for repository: ${repo.name}"
-              cat README.md
-              echo "----------------------------------------------"
+  #         steps:
+  #         - checkout: ${repo.name}
+  #         - script: |
+  #             echo "Checking out repository: ${repo.name}"
+  #             echo "Printing README file for repository: ${repo.name}"
+  #             cat README.md
+  #             echo "----------------------------------------------"
+            steps: 
+              - ${{ each parameter in parameters }}:
+                - script: echo ${{ parameter.Key }} 
+                - script: echo ${{ parameter.Value }}
