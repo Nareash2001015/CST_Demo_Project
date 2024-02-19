@@ -15,79 +15,48 @@ resources:
     type: github
     endpoint: github.com_Nareash20010150
     name: Nareash20010150/Dating-app
-
-parameters:
-  - name: myStringName
-    type: string
-    default: a string value
-  - name: myMultiString
-    type: string
-    default: default
-    values:
-    - default
-    - ubuntu
-  - name: myNumber
-    type: number
-    default: 2
-    values:
-    - 1
-    - 2
-    - 4
-    - 8
-    - 16
-  - name: myBoolean
-    type: boolean
-    default: true
-      
 trigger:
 - main
 stages:
 - stage: CheckoutRepositories
   displayName: 'Checkout Repositories'
-  # jobs:
-  # - job: CheckoutWSO2_APIM_HELM_Deployment
-  #   # pool:
-  #   #   vmImage: 'ubuntu-latest'
-  #   displayName: 'Checkout WSO2_APIM_HELM_Deployment'
-  #   steps:
-  #   - checkout: WSO2_APIM_HELM_Deployment
-  #   # - script: |
-  #   #     env=($(ls --ignore=master_repo))
-  #   #     for filename in "${env[@]}"; do
-  #   #       cat $filename/README.md
-  #   #     done
-  #   - script: | 
-  #       cat README.md
-  # - job: CheckoutMovieReview
-  #   # pool:
-  #   #     vmImage: 'ubuntu-latest'
-  #   displayName: 'Checkout Movie review'
-  #   steps:
-  #   - checkout: MovieReview
-  #   - script: | 
-  #       cat README.md
-  # - job: CheckoutDatingApp
-  #   # pool:
-  #   #     vmImage: 'ubuntu-latest'
-  #   displayName: 'Checkout Dating app'
-  #   steps:
-  #   - checkout: Dating-app
-  #   - script: | 
-  #       cat README.md
+
   jobs:
-    # - ${{ each repo in resources.repositories }}:
-      - job: CheckoutAndPrintReadme
-        displayName: "Checkout and Print README"
-        pool:
-          vmImage: 'ubuntu-latest'
-  #         steps:
-  #         - checkout: ${repo.name}
-  #         - script: |
-  #             echo "Checking out repository: ${repo.name}"
-  #             echo "Printing README file for repository: ${repo.name}"
-  #             cat README.md
-  #             echo "----------------------------------------------"
-          steps: 
-            - ${{ each parameter in parameters }}:
-              - script: echo ${{ parameter.Key }} 
-              - script: echo ${{ parameter.Value }}
+  - job: CheckoutAndPrintReadme_WSO2_APIM_HELM_Deployment
+    displayName: "Checkout and Print README WSO2_APIM_HELM_Deployment"
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - checkout: WSO2_APIM_HELM_Deployment
+    - script: |
+        echo "Checking out repository: WSO2_APIM_HELM_Deployment"
+        echo "Printing README file for repository: WSO2_APIM_HELM_Deployment"
+        cat README.md
+        echo '----------------------------------------------'
+
+
+  - job: CheckoutAndPrintReadme_MovieReview
+    displayName: "Checkout and Print README MovieReview"
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - checkout: MovieReview
+    - script: |
+        echo "Checking out repository: MovieReview"
+        echo "Printing README file for repository: MovieReview"
+        cat README.md
+        echo '----------------------------------------------'
+
+
+  - job: CheckoutAndPrintReadme_Dating-app
+    displayName: "Checkout and Print README Dating-app"
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - checkout: Dating-app
+    - script: |
+        echo "Checking out repository: Dating-app"
+        echo "Printing README file for repository: Dating-app"
+        cat README.md
+        echo '----------------------------------------------'
+

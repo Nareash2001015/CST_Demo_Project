@@ -1,0 +1,38 @@
+flask-restful/*.py[cod]
+flask-restful/env
+flask-restful/# C extensions
+flask-restful/*.so
+flask-restful/# Packages
+flask-restful/*.egg
+flask-restful/*.egg-info
+flask-restful/dist
+flask-restful/build
+flask-restful/eggs
+flask-restful/parts
+flask-restful/bin
+flask-restful/var
+flask-restful/sdist
+flask-restful/develop-eggs
+flask-restful/.installed.cfg
+flask-restful/lib
+flask-restful/lib64
+flask-restful/.cache
+flask-restful/# Installer logs
+flask-restful/pip-log.txt
+flask-restful/# Unit test / coverage reports
+flask-restful/.coverage
+flask-restful/htmlcov/
+flask-restful/.tox
+flask-restful/nosetests.xml
+flask-restful/#Translations
+flask-restful/*.mo
+flask-restful/#Mr Developer
+flask-restful/.mr.developer.cfg
+flask-restful/cover
+flask-restful/#Docs
+flask-restful/docs/_build
+flask-restful/#Pycharm
+flask-restful/.idea
+flask-restful/#Eclipse/Aptana
+flask-restful/.project
+flask-restful/.pydevproject
