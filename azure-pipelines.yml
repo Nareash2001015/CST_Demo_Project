@@ -11,16 +11,15 @@ resources:
     endpoint: github.com_Nareash20010150
     name: Nareash20010150/MovieReview
 
-  - repository: Dating-app
+  - repository: Dating_app
     type: github
     endpoint: github.com_Nareash20010150
-    name: Nareash20010150/Dating-app
+    name: Nareash20010150/Dating_app
 trigger:
 - main
 stages:
 - stage: CheckoutRepositories
   displayName: 'Checkout Repositories'
-
   jobs:
   - job: CheckoutAndPrintReadme_WSO2_APIM_HELM_Deployment
     displayName: "Checkout and Print README WSO2_APIM_HELM_Deployment"
@@ -48,15 +47,15 @@ stages:
         echo '----------------------------------------------'
 
 
-  - job: CheckoutAndPrintReadme_Dating-app
-    displayName: "Checkout and Print README Dating-app"
+  - job: CheckoutAndPrintReadme_Dating_app
+    displayName: "Checkout and Print README Dating_app"
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - checkout: Dating-app
+    - checkout: Dating_app
     - script: |
-        echo "Checking out repository: Dating-app"
-        echo "Printing README file for repository: Dating-app"
+        echo "Checking out repository: Dating_app"
+        echo "Printing README file for repository: Dating_app"
         cat README.md
         echo '----------------------------------------------'
 
