@@ -16,28 +16,28 @@ resources:
     endpoint: github.com_Nareash20010150
     name: Nareash20010150/Dating-app
 
-    parameters:
-      - name: myStringName
-        type: string
-        default: a string value
-      - name: myMultiString
-        type: string
-        default: default
-        values:
-        - default
-        - ubuntu
-      - name: myNumber
-        type: number
-        default: 2
-        values:
-        - 1
-        - 2
-        - 4
-        - 8
-        - 16
-      - name: myBoolean
-        type: boolean
-        default: true
+parameters:
+  - name: myStringName
+    type: string
+    default: a string value
+  - name: myMultiString
+    type: string
+    default: default
+    values:
+    - default
+    - ubuntu
+  - name: myNumber
+    type: number
+    default: 2
+    values:
+    - 1
+    - 2
+    - 4
+    - 8
+    - 16
+  - name: myBoolean
+    type: boolean
+    default: true
       
 trigger:
 - main
