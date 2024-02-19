@@ -1,53 +1,65 @@
-# variables:
-# - template: templates/vars.yml
-
-variables:
-  - name: repositories
-    value:
-    - WSO2_APIM_HELM_Deployment
-    - MovieReview
-    - Dating-app
-
 resources:
-    repositories:
-      - ${{ each repo in variables.repositories }}:
-        - repository: ${{repo}}
-          type: github
-          endpoint: github.com_Nareash20010150
-          name: Nareash20010150/${{repo}}
+  repositories:
+    
+  - repository: WSO2_APIM_HELM_Deployment
+    type: github
+    endpoint: github.com_Nareash20010150
+    name: Nareash20010150/WSO2_APIM_HELM_Deployment
 
+  - repository: MovieReview
+    type: github
+    endpoint: github.com_Nareash20010150
+    name: Nareash20010150/MovieReview
+
+  - repository: Dating-app
+    type: github
+    endpoint: github.com_Nareash20010150
+    name: Nareash20010150/Dating-app
 trigger:
 - main
 stages:
 - stage: CheckoutRepositories
   displayName: 'Checkout Repositories'
+  # jobs:
+  # - job: CheckoutWSO2_APIM_HELM_Deployment
+  #   # pool:
+  #   #   vmImage: 'ubuntu-latest'
+  #   displayName: 'Checkout WSO2_APIM_HELM_Deployment'
+  #   steps:
+  #   - checkout: WSO2_APIM_HELM_Deployment
+  #   # - script: |
+  #   #     env=($(ls --ignore=master_repo))
+  #   #     for filename in "${env[@]}"; do
+  #   #       cat $filename/README.md
+  #   #     done
+  #   - script: | 
+  #       cat README.md
+  # - job: CheckoutMovieReview
+  #   # pool:
+  #   #     vmImage: 'ubuntu-latest'
+  #   displayName: 'Checkout Movie review'
+  #   steps:
+  #   - checkout: MovieReview
+  #   - script: | 
+  #       cat README.md
+  # - job: CheckoutDatingApp
+  #   # pool:
+  #   #     vmImage: 'ubuntu-latest'
+  #   displayName: 'Checkout Dating app'
+  #   steps:
+  #   - checkout: Dating-app
+  #   - script: | 
+  #       cat README.md
   jobs:
-  - job: CheckoutWSO2_APIM_HELM_Deployment
-    # pool:
-    #   vmImage: 'ubuntu-latest'
-    displayName: 'Checkout WSO2_APIM_HELM_Deployment'
-    steps:
-    - checkout: WSO2_APIM_HELM_Deployment
-    # - script: |
-    #     env=($(ls --ignore=master_repo))
-    #     for filename in "${env[@]}"; do
-    #       cat $filename/README.md
-    #     done
-    - script: | 
-        cat README.md
-  - job: CheckoutMovieReview
-    # pool:
-    #     vmImage: 'ubuntu-latest'
-    displayName: 'Checkout Movie review'
-    steps:
-    - checkout: MovieReview
-    - script: | 
-        cat README.md
-  - job: CheckoutDatingApp
-    # pool:
-    #     vmImage: 'ubuntu-latest'
-    displayName: 'Checkout Dating app'
-    steps:
-    - checkout: Dating-app
-    - script: | 
-        cat README.md
+    - ${{ each repo in resources.repositories }}:
+        - job: CheckoutAndPrintReadme_${{ repo.name }}
+          displayName: "Checkout and Print README (${repo.name})"
+          pool:
+            vmImage: 'ubuntu-latest'
+          steps:
+          - checkout: ${repo.name}
+          - script: |
+              echo "Checking out repository: ${repo.name}"
+              echo "Printing README file for repository: ${repo.name}"
+              cat README.md
+              echo "----------------------------------------------"
