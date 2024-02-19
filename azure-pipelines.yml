@@ -75,9 +75,9 @@ stages:
   #   - script: | 
   #       cat README.md
   jobs:
-    - ${{ each repo in resources.repositories }}:
-        - job: CheckoutAndPrintReadme_${{ repo.name }}
-          displayName: "Checkout and Print README (${repo.name})"
+    # - ${{ each repo in resources.repositories }}:
+        - job: CheckoutAndPrintReadme
+          displayName: "Checkout and Print README"
           pool:
             vmImage: 'ubuntu-latest'
   #         steps:
