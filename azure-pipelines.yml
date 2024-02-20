@@ -19,7 +19,7 @@ trigger:
 - main
 stages:
 - stage: CheckoutRepositories
-  displayName: 'Checkout Repositories'
+  displayName: 'Checkout Repositories'  
   
   jobs:
   - job: CheckoutAndPrintReadme_WSO2_APIM_HELM_Deployment
