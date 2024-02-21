@@ -1,0 +1,210 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Swagger Customer specific test",
+    "description": "API to check whether CSTs are available for the given product details.\n- Request payload: product-name, product-base-version , update-level, project-key\nEg :-   {\n\"product-name\":\"wso2am\",\n\"product-base-version\":\"4.2.0\",\n\"update-level\":\"200\",\n\"project-key\":\"BNYMellonProd\"\n   }\n - Response body: Available list of CSTs for the given details. (empty array if no tests available)\n\nAPI to trigger the CSTs with the given CST details.\n - Request payload: (parameters we discussed the other day) Customer key, product name, product version etc.\n - Response body: Assigned queue/test ID\n\nAPI to check the status of the processed/processing CSTs with the given test ID.\n  - Path parameter: Test ID\n - Request Payload: nill\n - Response body: Details of the CSTs related to the given test ID. (array of CST name, test status [QUEUED, PROCESSING, PASSED, FAILED, TERMINATED], message (eg: failure message))\n\neg:\n[\n    {\n        name: \"BNY-apim-xxx-test\",\n        status: \"PROCESSING\",\n        message: \"\"\n    },\n    {\n        name: \"CA-apim-xxx-test\",\n        status: \"PASSED\",\n        message: \"Test successfully passed.\"\n    },\n    {\n        name: \"CA-apim-xxx-test\",\n        status: \"FAILED\",\n        message: \"XXX test case failed due to ... .\"\n    }\n]",
+    "version": "1.0.11"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000"
+    }
+  ],
+  "tags": [
+    {
+      "name": "cst",
+      "description": "Customer specific tests",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    }
+  ],
+  "paths": {
+    "/cst": {
+      "post": {
+        "tags": [
+          "cst"
+        ],
+        "summary": "Filter the high ARR customers",
+        "description": "Filter the high ARR customers according to the product name, product version and customer of the U2 update",
+        "operationId": "addPet",
+        "requestBody": {
+          "description": "Provide the U2 update details as a json",
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "product_name": "wso2am",
+                  "product_base_version": "3.2.0",
+                  "update_level": 66,
+                  "project_key": "ABC123"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": [
+                    {
+                      "customer_key": "BNYM",
+                      "product_name": "wso2am",
+                      "product_version": "3.2.0"
+                    },
+                    {
+                      "customer_key": "Credit Agricole",
+                      "product_name": "wso2am",
+                      "product_version": "3.2.0"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/cst/trigger": {
+      "post": {
+        "tags": [
+          "cst"
+        ],
+        "summary": "Trigger the Azure Devops pipeline",
+        "description": "Provide the customer details",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "List of CST details to be tested",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "example": {
+                  "customer_key": "BNYM",
+                  "product_name": "wso2am",
+                  "product_version": "3.2.0"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "build_id": "20240220.23",
+                    "state": "inProgress"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/cst/build": {
+      "get": {
+        "tags": [
+          "cst"
+        ],
+        "summary": "Returns job status",
+        "description": "Returns the status of the jobs being processed by the Azure Devops pipeline",
+        "parameters": [
+          {
+            "name": "build_id",
+            "in": "header",
+            "description": "build_id of the specific run should be provided",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "20240220.23"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "state": {
+                        "type": "string"
+                      }
+                    },
+                    "example": [
+                      {
+                        "name": "BNYM_wso2si_3.2.0",
+                        "result": null,
+                        "state": "pending"
+                      },
+                      {
+                        "name": "ca_wso2ei_1.8.0",
+                        "result": "succeeded",
+                        "state": "completed",
+                        "message": "https://dev.azure.com/cs-cst-rnd-001/1876223e-54f1-4521-9373-e25147f4474e/_apis/build/builds/136/logs/11"
+                      },
+                      {
+                        "name": "BNYM_wso2am_4.2.0",
+                        "result": null,
+                        "state": "inProgress"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
