@@ -1,3 +1,4 @@
+
 # Flask-RESTful
 
 [![Build Status](https://travis-ci.org/flask-restful/flask-restful.svg?branch=master)](http://travis-ci.org/flask-restful/flask-restful)
@@ -6,7 +7,34 @@
 
 Flask-RESTful provides the building blocks for creating a great REST API.
 
-## User Guide
+## Project goals
 
-You'll find the user guide and all documentation [here](https://flask-restful.readthedocs.io/)
+1) Rest Endpoint to filter the customer details
+	- Operation
+		 - The customer details are returned as the list of objects and joined to refer the repository name.
+2) Rest Endpoint to trigger the Azure Devops pipeline 
+	 - operation: 
+		 - The Request pushes the repository to the github and Azure Devops pipeline is triggered automatically.
+		 - The pipeline checkouts the repositories filtered through the first API.
+3) Rest Endpoint to check the status of the jobs running through the Azure Devops pipeline.
 
+## Technologies used
+
+1) Azure Devops
+2) Python Flask
+3) MySQL DBMS
+
+## Steps
+
+### Way 1
+1) Install python
+2) Install flask
+3) Clone Repository
+	-  ` git clone https://github.com/Nareash20010150/CST_Demo_Project.git`
+	-  ` cd CST_Demo_Project/`
+	- `  flask -app flakr run `
+
+### Way 2
+1) Install Docker
+
+	
