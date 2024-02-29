@@ -1,4 +1,5 @@
 
+
 # Flask-RESTful
 
 [![Build Status](https://travis-ci.org/flask-restful/flask-restful.svg?branch=master)](http://travis-ci.org/flask-restful/flask-restful)
@@ -36,5 +37,7 @@ Flask-RESTful provides the building blocks for creating a great REST API.
 
 ### Way 2
 1) Install Docker
-
-	
+2) Start docker daemon
+3) Use the commands
+	- `docker build -t flask_cst_app .`
+	-  `docker run -p 5000:5000 --name flask_cst_app flask_cst_app:latest` 
