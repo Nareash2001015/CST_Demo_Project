@@ -6,7 +6,6 @@ CREATE TABLE cst_info (
     product_name VARCHAR(255) NOT NULL,
     product_base_version VARCHAR(50) NOT NULL,
     update_level INT NOT NULL,
-    project_key VARCHAR(50) NOT NULL
 );
 
 INSERT INTO cst_info (customer_key, product_name, product_base_version, update_level, project_key) VALUES
